@@ -1,5 +1,5 @@
 # PowerfulJS
-An addon for adding multiple features to the KubeJS.
+An addon for adding multiple features to the KubeJS. However, the mod is only for testing purposes, and will never be publicly released, or have any identical features to KubeJS itself.
 
 Currently supports Enchantments and MobEffects:
 
