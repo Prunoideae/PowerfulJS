@@ -85,67 +85,67 @@ public class EnchantmentBuilder extends BuilderBase<Enchantment> {
         return new EnchantmentJS(this);
     }
 
-    public EnchantmentBuilder setCategory(EnchantmentCategory category) {
+    public EnchantmentBuilder category(EnchantmentCategory category) {
         this.category = category;
         return this;
     }
 
-    public EnchantmentBuilder setEquipmentSlots(List<EquipmentSlot> equipmentSlots) {
+    public EnchantmentBuilder equipmentSlots(List<EquipmentSlot> equipmentSlots) {
         this.equipmentSlots = equipmentSlots;
         return this;
     }
 
-    public EnchantmentBuilder setRarity(Enchantment.Rarity rarity) {
+    public EnchantmentBuilder rarity(Enchantment.Rarity rarity) {
         this.rarity = rarity;
         return this;
     }
 
-    public EnchantmentBuilder setCurse(boolean curse) {
+    public EnchantmentBuilder curse(boolean curse) {
         this.curse = curse;
         return this;
     }
 
-    public EnchantmentBuilder setDiscoverable(boolean discoverable) {
+    public EnchantmentBuilder discoverable(boolean discoverable) {
         this.discoverable = discoverable;
         return this;
     }
 
-    public EnchantmentBuilder setTradeable(boolean tradeable) {
+    public EnchantmentBuilder tradeable(boolean tradeable) {
         this.tradeable = tradeable;
         return this;
     }
 
-    public EnchantmentBuilder setTreasureOnly(boolean treasureOnly) {
+    public EnchantmentBuilder treasureOnly(boolean treasureOnly) {
         this.tresureOnly = treasureOnly;
         return this;
     }
 
-    public EnchantmentBuilder setMinCost(Integer minCost) {
+    public EnchantmentBuilder minCost(Integer minCost) {
         this.minCost = minCost;
         return this;
     }
 
-    public EnchantmentBuilder setMaxCost(Integer maxCost) {
+    public EnchantmentBuilder maxCost(Integer maxCost) {
         this.maxCost = maxCost;
         return this;
     }
 
-    public EnchantmentBuilder setMinLevel(int minLevel) {
+    public EnchantmentBuilder minLevel(int minLevel) {
         this.minLevel = minLevel;
         return this;
     }
 
-    public EnchantmentBuilder setMaxLevel(int maxLevel) {
+    public EnchantmentBuilder maxLevel(int maxLevel) {
         this.maxLevel = maxLevel;
         return this;
     }
 
-    public EnchantmentBuilder getDamageBonusOf(BiFunction<Integer, MobType, Float> damageBonusCallback) {
+    public EnchantmentBuilder damageBonusOf(BiFunction<Integer, MobType, Float> damageBonusCallback) {
         this.damageBonusCallback = damageBonusCallback;
         return this;
     }
 
-    public EnchantmentBuilder getDamageProtectionOf(BiFunction<Integer, DamageSource, Integer> damageProtectionCallback) {
+    public EnchantmentBuilder damageProtectionOf(BiFunction<Integer, DamageSource, Integer> damageProtectionCallback) {
         this.damageProtectionCallback = damageProtectionCallback;
         return this;
     }
@@ -160,7 +160,7 @@ public class EnchantmentBuilder extends BuilderBase<Enchantment> {
         return this;
     }
 
-    public EnchantmentBuilder testCompatibility(Predicate<Enchantment> isCompatibleWith) {
+    public EnchantmentBuilder compatibility(Predicate<Enchantment> isCompatibleWith) {
         this.isCompatibleWith = isCompatibleWith;
         return this;
     }
