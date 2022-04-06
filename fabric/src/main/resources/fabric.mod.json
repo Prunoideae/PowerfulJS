@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "powerfuljs",
+  "version": "${version}",
+  "name": "PowerfulJS",
+  "description": "Extending the KubeJS",
+  "authors": [
+    "Prunoideae"
+  ],
+  "contact": {
+    "homepage": "https://github.com/Prunoideae",
+    "sources": "https://github.com/Prunoideae/PowerfulJS"
+  },
+  "license": "Insert License Here",
+  "icon": "assets/powerfuljs/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.prunoideae.fabric.PowerfulJSFabric"
+    ]
+  },
+  "depends": {
+    "fabric": "*",
+    "minecraft": ">=1.18.2",
+    "architectury": ">=4.1.39"
+  }
+}
