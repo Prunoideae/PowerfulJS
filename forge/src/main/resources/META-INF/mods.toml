@@ -11,7 +11,7 @@ authors = "Prunoideae"
 description = '''
 Extending the KubeJS
 '''
-#logoFile = ""
+logoFile = ""
 
 [[dependencies.powerfuljs]]
 modId = "forge"

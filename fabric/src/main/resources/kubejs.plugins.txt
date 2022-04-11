@@ -1,1 +1,1 @@
-com.prunoideae.forge.PowferfulJSForgePlugin
+com.prunoideae.forge.PowerfulJSForgePlugin
