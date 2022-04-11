@@ -1,5 +1,6 @@
 package com.prunoideae.forge.capability.item;
 
+import com.prunoideae.forge.capability.CapabilitiesProvider;
 import dev.latvian.mods.kubejs.item.ItemStackJS;
 import dev.latvian.mods.kubejs.item.custom.BasicItemJS;
 import net.minecraft.nbt.CompoundTag;
@@ -9,8 +10,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class CapabilityItemJS extends BasicItemJS {
-    private final CapabilityItemBuilder.InitCapabilityCallback onInitCaps;
+    private final List<CapabilityItemBuilder.InitCapabilityCallback> onInitCaps;
 
     public CapabilityItemJS(Builder p) {
         super(p);
@@ -20,7 +24,7 @@ public class CapabilityItemJS extends BasicItemJS {
     @Nullable
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt) {
-        return onInitCaps != null ? onInitCaps.apply(ItemStackJS.of(stack), nbt) : null;
+        return onInitCaps.isEmpty() ? null : new CapabilitiesProvider(onInitCaps.stream().map(callback -> callback.apply(ItemStackJS.of(stack), nbt)).collect(Collectors.toList()));
     }
 
     public static class Builder extends CapabilityItemBuilder {

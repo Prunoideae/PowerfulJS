@@ -7,6 +7,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class CapabilityItemBuilder extends ItemBuilder {
 
@@ -15,13 +17,13 @@ public abstract class CapabilityItemBuilder extends ItemBuilder {
         ICapabilityProvider apply(ItemStackJS stack, @Nullable CompoundTag nbt);
     }
 
-    public transient InitCapabilityCallback onInitCapabilities;
+    public transient List<InitCapabilityCallback> onInitCapabilities = new ArrayList<>();
 
     public CapabilityItemBuilder(ResourceLocation i) {
         super(i);
     }
 
     public void initCapabilities(InitCapabilityCallback onInitCapabilities) {
-        this.onInitCapabilities = onInitCapabilities;
+        this.onInitCapabilities.add(onInitCapabilities);
     }
 }
