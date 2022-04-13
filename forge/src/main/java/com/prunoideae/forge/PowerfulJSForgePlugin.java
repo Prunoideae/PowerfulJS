@@ -1,6 +1,7 @@
 package com.prunoideae.forge;
 
 import com.prunoideae.PowerfulJSPlugin;
+import com.prunoideae.forge.capability.CapabilityHelper;
 import com.prunoideae.forge.capability.energy.EnergyItemStack;
 import com.prunoideae.forge.capability.item.CapabilityItemJS;
 import dev.latvian.mods.kubejs.RegistryObjectBuilderTypes;
@@ -19,5 +20,6 @@ public class PowerfulJSForgePlugin extends PowerfulJSPlugin {
         super.addBindings(event);
         event.add("EnergyItemStack", EnergyItemStack.class);
         event.add("FluidHandlerItemStack", FluidHandlerItemStack.class);
+        event.add("CapabilityHelper", CapabilityHelper.class);
     }
 }
