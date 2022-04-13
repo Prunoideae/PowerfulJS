@@ -1,27 +1,14 @@
 # PowerfulJS
 An addon for adding multiple features to the KubeJS. However, the mod is only for testing purposes, and will never be publicly released, or have any identical features to KubeJS itself.
 
-Currently supports Enchantments and MobEffects:
+Currently supports attaching (multiple) capabilities to an Item:
 
 ```javascript
-onEvent("enchantment.registry", event => {
-	event.create("vector", "pjs_basic")
-		.rarity(EnchantmentRarity.COMMON)
-		.onPostAttack(attackInfo => {
-			var victim = attackInfo.victim;
-			victim.addMotion(0, 1, 0);
-		});
+onEvent('item.registry', event => {
+    event.create("super_capacitor", "capability_basic")
+        .addCapability((itemstack, nbt) => new EnergyItemStack(itemstack, 10000))
+        .addCapability((itemstack, nbt) => new FluidHandlerItemStack(itemstack, 10000))
 })
 ```
-
-![2B7ABCFC916E252EABD5C92A7AC366A6](https://user-images.githubusercontent.com/24620047/161933928-ef479413-1fa0-48e2-8f75-2ece17df5e2e.gif)
-
-```javascript
-onEvent("mob_effect.registry", event => {
-	event.create("fast", "pjs_basic")
-		.color(Color.WHITE)
-		.addModifier(Attributes.MOVEMENT_SPEED, "91AEAA56-376B-4498-935B-2F7F68070640", 3, ModifyOperation.ADDITION)
-})
-```
-
-![d](https://user-images.githubusercontent.com/24620047/161934005-6e24d48e-0ffa-4522-8891-636620de9e2b.gif)
+![d1](https://user-images.githubusercontent.com/24620047/163082667-779b0cb4-8612-4aa8-bbf3-bf337f428e0e.gif)
+![d2](https://user-images.githubusercontent.com/24620047/163083066-4372d91c-4d12-49f9-ab29-0c0e1612ddd7.gif)
