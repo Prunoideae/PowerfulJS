@@ -11,6 +11,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class CapabilityItemJS extends BasicItemJS {
@@ -24,7 +25,11 @@ public class CapabilityItemJS extends BasicItemJS {
     @Nullable
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt) {
-        return onInitCaps.isEmpty() ? null : new CapabilitiesProvider(onInitCaps.stream().map(callback -> callback.apply(ItemStackJS.of(stack), nbt)).collect(Collectors.toList()));
+        List<ICapabilityProvider> inited = onInitCaps.stream()
+                .map(callback -> callback.apply(ItemStackJS.of(stack), nbt))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+        return inited.isEmpty() ? null : new CapabilitiesProvider(inited);
     }
 
     public static class Builder extends CapabilityItemBuilder {

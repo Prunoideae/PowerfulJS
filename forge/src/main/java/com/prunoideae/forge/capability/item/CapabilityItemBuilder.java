@@ -23,7 +23,8 @@ public abstract class CapabilityItemBuilder extends ItemBuilder {
         super(i);
     }
 
-    public void initCapabilities(InitCapabilityCallback onInitCapabilities) {
+    public CapabilityItemBuilder addCapability(InitCapabilityCallback onInitCapabilities) {
         this.onInitCapabilities.add(onInitCapabilities);
+        return this;
     }
 }
