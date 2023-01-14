@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "powerfuljs",
+  "version": "${version}",
+
+  "name": "PowerfulJS",
+  "description": "Adds Capability/ApiLookup support for KubeJS",
+  "authors": [
+    "Prunoideae"
+  ],
+  "contact": {},
+
+  "license": "LGPL-3.0",
+  "icon": "icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.prunoideae.powerfuljs.fabric.PowerfulJSFabric"
+    ]
+  },
+  "mixins": [
+    "powerfuljs-fabric.mixins.json",
+    "powerfuljs-common.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.12",
+    "minecraft": ">=1.19.2"
+  }
+}

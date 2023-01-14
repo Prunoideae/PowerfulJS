@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.prunoideae.powerfuljs.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "ItemBuilderMixin",
+    "ItemMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
