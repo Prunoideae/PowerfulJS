@@ -1,6 +1,6 @@
 package com.prunoideae.powerfuljs.capabilities.forge.mods.botania;
 
-import com.prunoideae.powerfuljs.capabilities.forge.BuilderForgeCapability;
+import com.prunoideae.powerfuljs.capabilities.forge.CapabilityBuilderForge;
 import dev.latvian.mods.rhino.util.HideFromJS;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
@@ -26,7 +26,7 @@ public class CapabilityBlockProvider {
         int getBlockCount(ItemStack instance, Player player, ItemStack requestor, Block block);
     }
 
-    public static class BuilderItemStack extends BuilderForgeCapability<ItemStack, BlockProvider> {
+    public static class BuilderItemStack extends CapabilityBuilderForge<ItemStack, BlockProvider> {
         private ProvideBlock provideBlock;
         private GetBlockCount getBlockCount;
 

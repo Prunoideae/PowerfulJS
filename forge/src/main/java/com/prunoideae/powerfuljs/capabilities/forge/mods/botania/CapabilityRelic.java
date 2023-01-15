@@ -1,6 +1,6 @@
 package com.prunoideae.powerfuljs.capabilities.forge.mods.botania;
 
-import com.prunoideae.powerfuljs.capabilities.forge.BuilderForgeCapability;
+import com.prunoideae.powerfuljs.capabilities.forge.CapabilityBuilderForge;
 import dev.latvian.mods.rhino.util.HideFromJS;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -40,7 +40,7 @@ public class CapabilityRelic {
         RelicImpl.addDefaultTooltip(stack, tooltip);
     }
 
-    public static class NormalRelicBuilder extends BuilderForgeCapability<ItemStack, Relic> {
+    public static class NormalRelicBuilder extends CapabilityBuilderForge<ItemStack, Relic> {
 
         private final ResourceLocation advancement;
 
@@ -64,7 +64,7 @@ public class CapabilityRelic {
         }
     }
 
-    public static class CustomRelicBuilder extends BuilderForgeCapability<ItemStack, Relic> {
+    public static class CustomRelicBuilder extends CapabilityBuilderForge<ItemStack, Relic> {
         private static final String TAG_SOULBIND_UUID = "soulbindUUID";
 
         private RelicTick tick;

@@ -1,6 +1,6 @@
 package com.prunoideae.powerfuljs.capabilities.forge.mods.botania;
 
-import com.prunoideae.powerfuljs.capabilities.forge.BuilderForgeCapability;
+import com.prunoideae.powerfuljs.capabilities.forge.CapabilityBuilderForge;
 import dev.latvian.mods.rhino.util.HideFromJS;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -18,7 +18,7 @@ public class CapabilityAvatar {
         return new AvatarBehaviorBuilder();
     }
 
-    public static class AvatarBehaviorBuilder extends BuilderForgeCapability<ItemStack, AvatarWieldable> {
+    public static class AvatarBehaviorBuilder extends CapabilityBuilderForge<ItemStack, AvatarWieldable> {
         private BiConsumer<ItemStack, Avatar> onUpdate;
         private ResourceLocation overlay = new ResourceLocation("botania:textures/model/avatar.png");
 

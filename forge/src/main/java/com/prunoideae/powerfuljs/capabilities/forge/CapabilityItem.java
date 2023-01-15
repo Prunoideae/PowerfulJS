@@ -32,7 +32,7 @@ public class CapabilityItem {
         return new BlockEntityBuilder();
     }
 
-    public static class BlockEntityBuilder extends BuilderForgeCapability<BlockEntity, IItemHandler> {
+    public static class BlockEntityBuilder extends CapabilityBuilderForge<BlockEntity, IItemHandler> {
 
         private ToIntFunction<BlockEntity> getSlots;
         private BiFunction<BlockEntity, Integer, ItemStack> getStackInSlot;

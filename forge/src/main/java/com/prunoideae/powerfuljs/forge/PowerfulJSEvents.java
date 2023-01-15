@@ -3,6 +3,7 @@ package com.prunoideae.powerfuljs.forge;
 import com.prunoideae.powerfuljs.CapabilityBuilder;
 import com.prunoideae.powerfuljs.CapabilityService;
 import com.prunoideae.powerfuljs.capabilities.forge.CapabilityProvider;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -27,6 +28,16 @@ public class PowerfulJSEvents {
         BlockEntity object = event.getObject();
         CapabilityService.INSTANCE.getCapabilitiesFor(object).ifPresent(builders -> {
             for (CapabilityBuilder<BlockEntity, ?, ?> builder : builders) {
+                event.addCapability(builder.getResourceLocation(), CapabilityProvider.of(builder.getCapabilityKey(), builder.getCapability(object)));
+            }
+        });
+    }
+
+    @SubscribeEvent
+    public static void attachEntityCapabilities(AttachCapabilitiesEvent<Entity> event) {
+        Entity object = event.getObject();
+        CapabilityService.INSTANCE.getCapabilitiesFor(object).ifPresent(builders -> {
+            for (CapabilityBuilder<Entity, ?, ?> builder : builders) {
                 event.addCapability(builder.getResourceLocation(), CapabilityProvider.of(builder.getCapabilityKey(), builder.getCapability(object)));
             }
         });

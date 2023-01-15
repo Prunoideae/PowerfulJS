@@ -22,6 +22,10 @@ dependencies {
     modImplementation "dev.latvian.mods:rhino-forge:${rootProject.rhino_version}"
     modImplementation "vazkii.botania:Botania:${rootProject.botania_version}-FORGE"
     modImplementation "me.desht.pneumaticcraft:pneumaticcraft-repressurized:${rootProject.minecraft_version}-${rootProject.pnc_version}"
+    modImplementation "mekanism:Mekanism:${rootProject.minecraft_version}-${rootProject.mekanism_version}"
+    runtimeOnly "mekanism:Mekanism:${rootProject.minecraft_version}-${rootProject.mekanism_version}:additions"
+    runtimeOnly "mekanism:Mekanism:${rootProject.minecraft_version}-${rootProject.mekanism_version}:generators"
+    runtimeOnly "mekanism:Mekanism:${rootProject.minecraft_version}-${rootProject.mekanism_version}:tools"
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 }

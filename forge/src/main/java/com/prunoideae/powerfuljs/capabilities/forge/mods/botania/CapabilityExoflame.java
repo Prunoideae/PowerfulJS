@@ -1,6 +1,6 @@
 package com.prunoideae.powerfuljs.capabilities.forge.mods.botania;
 
-import com.prunoideae.powerfuljs.capabilities.forge.BuilderForgeCapability;
+import com.prunoideae.powerfuljs.capabilities.forge.CapabilityBuilderForge;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.Capability;
@@ -17,7 +17,7 @@ public class CapabilityExoflame {
         return new BuilderBlockEntity();
     }
 
-    public static class BuilderBlockEntity extends BuilderForgeCapability<BlockEntity, ExoflameHeatable> {
+    public static class BuilderBlockEntity extends CapabilityBuilderForge<BlockEntity, ExoflameHeatable> {
 
         private Predicate<BlockEntity> canSmelt;
         private ToIntFunction<BlockEntity> getBurnTime;

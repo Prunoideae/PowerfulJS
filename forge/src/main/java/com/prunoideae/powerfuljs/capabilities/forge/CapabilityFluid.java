@@ -43,7 +43,7 @@ public class CapabilityFluid {
         return new CustomTankBuilderBlockEntity();
     }
 
-    public static class NormalTankBuilderItemStack extends BuilderForgeCapability<ItemStack, IFluidHandlerItem> {
+    public static class NormalTankBuilderItemStack extends CapabilityBuilderForge<ItemStack, IFluidHandlerItem> {
         private final int capacity;
 
         private NormalTankBuilderItemStack(int capacity) {
@@ -130,7 +130,7 @@ public class CapabilityFluid {
         }
     }
 
-    public static class CustomTankBuilderItemStack extends BuilderForgeCapability<ItemStack, IFluidHandlerItem> {
+    public static class CustomTankBuilderItemStack extends CapabilityBuilderForge<ItemStack, IFluidHandlerItem> {
         private FluidIOItemStack onFill;
         private FluidIOItemStack onDrain;
         private BiPredicate<ItemStack, FluidStackJS> isFluidGood;
@@ -183,7 +183,7 @@ public class CapabilityFluid {
         }
     }
 
-    public static class CustomTankBuilderBlockEntity extends BuilderForgeCapability<BlockEntity, IFluidHandler> {
+    public static class CustomTankBuilderBlockEntity extends CapabilityBuilderForge<BlockEntity, IFluidHandler> {
         private FluidIOBlockEntity onFill;
         private FluidIOBlockEntity onDrain;
         private BiPredicate<BlockEntity, FluidStackJS> isFluidGood;

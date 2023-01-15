@@ -30,7 +30,7 @@ public class CapabilityForgeEnergy {
         return new ItemStackBuilder();
     }
 
-    public static class ItemStorageBuilder extends BuilderForgeCapability<ItemStack, IEnergyStorage> {
+    public static class ItemStorageBuilder extends CapabilityBuilderForge<ItemStack, IEnergyStorage> {
         private final int capacity;
         private final boolean canExtract;
         private final boolean canReceive;
@@ -100,7 +100,7 @@ public class CapabilityForgeEnergy {
         }
     }
 
-    public static class ItemStackBuilder extends BuilderForgeCapability<ItemStack, IEnergyStorage> {
+    public static class ItemStackBuilder extends CapabilityBuilderForge<ItemStack, IEnergyStorage> {
         private EnergyIOItemStack receiveEnergy;
         private EnergyIOItemStack extractEnergy;
 
@@ -198,7 +198,7 @@ public class CapabilityForgeEnergy {
         return new BlockEntityBuilder();
     }
 
-    public static class BlockEntityBuilder extends BuilderForgeCapability<BlockEntity, IEnergyStorage> {
+    public static class BlockEntityBuilder extends CapabilityBuilderForge<BlockEntity, IEnergyStorage> {
         private EnergyIOBlockEntity receiveEnergy;
         private EnergyIOBlockEntity extractEnergy;
 
