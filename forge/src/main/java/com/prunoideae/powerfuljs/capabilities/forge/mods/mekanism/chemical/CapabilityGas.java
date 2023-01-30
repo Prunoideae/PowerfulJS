@@ -10,18 +10,19 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityProvider;
 import org.jetbrains.annotations.NotNull;
 
 public class CapabilityGas {
-    public static ItemStackBuilder itemStack() {
+    public ItemStackBuilder itemStack() {
         return new ItemStackBuilder();
     }
 
-    public static BlockEntityBuilder blockEntity() {
+    public BlockEntityBuilder blockEntity() {
         return new BlockEntityBuilder();
     }
 
-    public static abstract class GasBuilder<I> extends CapabilityChemical.ChemicalBuilder<I, IGasHandler, Gas, GasStack> {
+    public static abstract class GasBuilder<I extends CapabilityProvider<I>> extends CapabilityChemical.ChemicalBuilder<I, IGasHandler, Gas, GasStack> {
         @Override
         @HideFromJS
         public Capability<IGasHandler> getCapabilityKey() {
@@ -60,7 +61,7 @@ public class CapabilityGas {
 
                 @Override
                 public @NotNull GasStack insertChemical(int i, @NotNull GasStack stack, @NotNull Action action) {
-                    return insertChemical == null ? GasStack.EMPTY : insertChemical.apply(instance, i, stack, action.simulate());
+                    return insertChemical == null ? stack : insertChemical.apply(instance, i, stack, action.simulate());
                 }
 
                 @Override

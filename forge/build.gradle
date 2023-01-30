@@ -6,6 +6,13 @@ architectury {
     forge()
 }
 
+loom {
+    forge{
+        mixinConfig("powerfuljs-common.mixins.json")
+        mixinConfig("powerfuljs-forge.mixins.json")
+    }
+}
+
 configurations {
     common
     shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
@@ -23,6 +30,8 @@ dependencies {
     modImplementation "vazkii.botania:Botania:${rootProject.botania_version}-FORGE"
     modImplementation "me.desht.pneumaticcraft:pneumaticcraft-repressurized:${rootProject.minecraft_version}-${rootProject.pnc_version}"
     modImplementation "mekanism:Mekanism:${rootProject.minecraft_version}-${rootProject.mekanism_version}"
+    compileOnly "top.theillusivec4.curios:curios-forge:${rootProject.minecraft_version}-${rootProject.curios_version}:api"
+    runtimeOnly "top.theillusivec4.curios:curios-forge:${rootProject.minecraft_version}-${rootProject.curios_version}"
     runtimeOnly "mekanism:Mekanism:${rootProject.minecraft_version}-${rootProject.mekanism_version}:additions"
     runtimeOnly "mekanism:Mekanism:${rootProject.minecraft_version}-${rootProject.mekanism_version}:generators"
     runtimeOnly "mekanism:Mekanism:${rootProject.minecraft_version}-${rootProject.mekanism_version}:tools"

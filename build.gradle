@@ -34,6 +34,10 @@ allprojects {
 
     repositories {
         maven {
+            name = "C4"
+            url = "https://maven.theillusivec4.top/"
+        }
+        maven {
             url "https://maven.architectury.dev/"
             content {
                 includeGroup "me.shedaniel"

@@ -4,7 +4,7 @@ import com.prunoideae.powerfuljs.capabilities.forge.CapabilityBuilderForge;
 import mekanism.api.chemical.Chemical;
 import mekanism.api.chemical.ChemicalStack;
 import mekanism.api.chemical.IChemicalHandler;
-import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.common.capabilities.CapabilityProvider;
 import net.minecraftforge.common.util.TriPredicate;
 
 import java.util.function.BiFunction;
@@ -26,6 +26,7 @@ import java.util.function.ToIntFunction;
  * 狂！彻底疯狂！彻底疯狂！彻底疯狂！彻底疯狂！彻底疯狂！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀
  * ！杀！彻底疯狂！彻底疯狂！彻底疯狂！彻底疯狂！彻底疯狂！彻底疯狂！彻底疯狂！彻底疯狂！彻底疯狂！彻底疯狂！
  */
+@SuppressWarnings("ALL")
 public class CapabilityChemical {
 
     @FunctionalInterface
@@ -45,7 +46,7 @@ public class CapabilityChemical {
 
 
     public static abstract class ChemicalBuilder<
-            I,                                  //Instance
+            I extends CapabilityProvider<I>,                                  //Instance
             H extends IChemicalHandler<C, S>,   //Handler
             C extends Chemical<C>,              //Chemical
             S extends ChemicalStack<C>          //Chemical Stack
