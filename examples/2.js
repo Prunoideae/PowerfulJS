@@ -10,9 +10,9 @@ StartupEvents.registry('item', event => {
 				.getMaxEnergyStored(i => 1000)
 				.extractEnergy((itm, i, sim) => {
 					if (!sim) {
-						itm.damageValue += 1
-						if (itm.damageValue >= 1000)
-							itm.shrink(1)
+						//itm.damageValue += 1
+						//if (itm.damageValue >= 1000)
+						//	itm.shrink(1)
 					}
 					return 20
 				})
