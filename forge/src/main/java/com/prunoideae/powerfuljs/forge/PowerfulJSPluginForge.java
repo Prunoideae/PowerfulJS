@@ -69,6 +69,7 @@ public class PowerfulJSPluginForge extends PowerfulJSPlugin {
 
     @Override
     public void afterInit() {
+        super.afterInit();
         if (Platform.isModLoaded("curios")) {
             PowerfulJS.PROXY.runOnClient(() -> EventCurios.REGISTER_RENDERER.post(new RegisterCuriosRendererEventJS()));
         }
