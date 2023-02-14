@@ -33,9 +33,9 @@ public class CapabilityAlloyInteractable {
 
         @Override
         public IAlloyInteraction getCapability(BlockEntity instance) {
-            return (player, itemStack, alloyTier) -> {
+            return (player, stack, tier) -> {
                 if (interaction != null)
-                    interaction.onInteraction(instance, player, itemStack, alloyTier);
+                    interaction.onInteraction(instance, player, stack, tier);
             };
         }
 

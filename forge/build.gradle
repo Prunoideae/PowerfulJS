@@ -37,6 +37,7 @@ dependencies {
     runtimeOnly "mekanism:Mekanism:${rootProject.minecraft_version}-${rootProject.mekanism_version}:tools"
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
+    modImplementation "curse.maven:immersive-engineering-231951:${project.immersive_engineering_file}"
 }
 
 

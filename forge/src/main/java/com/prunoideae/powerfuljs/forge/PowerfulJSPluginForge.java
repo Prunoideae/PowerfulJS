@@ -7,11 +7,15 @@ import com.prunoideae.powerfuljs.capabilities.forge.mods.botania.CapabilitiesBot
 import com.prunoideae.powerfuljs.capabilities.forge.mods.curios.CapabilitiesCurios;
 import com.prunoideae.powerfuljs.capabilities.forge.mods.curios.EventCurios;
 import com.prunoideae.powerfuljs.capabilities.forge.mods.curios.RegisterCuriosRendererEventJS;
+import com.prunoideae.powerfuljs.capabilities.forge.mods.immersive.CapabilitiesHelperIE;
+import com.prunoideae.powerfuljs.capabilities.forge.mods.immersive.CapabilitiesIE;
 import com.prunoideae.powerfuljs.capabilities.forge.mods.mekanism.CapabilitiesMekanism;
 import com.prunoideae.powerfuljs.capabilities.forge.mods.mekanism.MekanismHelper;
 import com.prunoideae.powerfuljs.capabilities.forge.mods.pnc.CapabilitiesPneumatic;
+import com.prunoideae.powerfuljs.custom.BlockDummyEntityJS;
 import dev.architectury.hooks.fluid.forge.FluidStackHooksForge;
 import dev.architectury.platform.Platform;
+import dev.latvian.mods.kubejs.RegistryObjectBuilderTypes;
 import dev.latvian.mods.kubejs.fluid.FluidStackJS;
 import dev.latvian.mods.kubejs.script.BindingsEvent;
 import dev.latvian.mods.kubejs.script.ScriptType;
@@ -25,6 +29,11 @@ import top.theillusivec4.curios.api.client.ICurioRenderer;
 import vazkii.botania.api.BotaniaForgeCapabilities;
 
 public class PowerfulJSPluginForge extends PowerfulJSPlugin {
+    @Override
+    public void init() {
+        RegistryObjectBuilderTypes.BLOCK.addType("powerfuljs:dummy_block_entity", BlockDummyEntityJS.Builder.class, BlockDummyEntityJS.Builder::new);
+    }
+
     @Override
     public void registerBindings(BindingsEvent event) {
         event.add("CapabilityBuilder", CapabilitiesForge.class);
@@ -48,6 +57,10 @@ public class PowerfulJSPluginForge extends PowerfulJSPlugin {
             event.add("CuriosCapabilities", CuriosCapability.class);
             event.add("CuriosCapabilityBuilder", CapabilitiesCurios.class);
             PowerfulJS.PROXY.runOnClient(() -> event.add("CuriosRenderer", ICurioRenderer.class));
+        }
+        if (Platform.isModLoaded("immersiveengineering")) {
+            event.add("IECapabilityBuilder", CapabilitiesIE.class);
+            event.add("IECapabilities", CapabilitiesHelperIE.class);
         }
     }
 
@@ -74,4 +87,6 @@ public class PowerfulJSPluginForge extends PowerfulJSPlugin {
             PowerfulJS.PROXY.runOnClient(() -> EventCurios.REGISTER_RENDERER.post(new RegisterCuriosRendererEventJS()));
         }
     }
+
+
 }
