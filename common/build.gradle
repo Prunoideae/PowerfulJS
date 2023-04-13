@@ -9,6 +9,10 @@ dependencies {
     modImplementation "vazkii.botania:Botania-xplat:${rootProject.botania_version}"
 }
 
+loom {
+    accessWidenerPath = file("src/main/resources/powerfuljs-common.accesswidener")
+}
+
 architectury {
     common()
 }

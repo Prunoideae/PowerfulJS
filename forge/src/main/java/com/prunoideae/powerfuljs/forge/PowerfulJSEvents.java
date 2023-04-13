@@ -30,6 +30,9 @@ public class PowerfulJSEvents {
                 event.addCapability(builder.getResourceLocation(), CapabilityProvider.of(builder.getCapabilityKey(), builder.getCapability(object), side -> builder.getDirection().test(object, side)));
             }
         });
+        CapabilityServiceForge.INSTANCE.getCapabilitiesFor(object).forEach(builder -> {
+            event.addCapability(builder.getResourceLocation(), CapabilityProvider.of(builder.getCapabilityKey(), builder.getCapability(object), side -> builder.getDirection().test(object, side)));
+        });
     }
 
     @SubscribeEvent
@@ -40,6 +43,9 @@ public class PowerfulJSEvents {
                 event.addCapability(builder.getResourceLocation(), CapabilityProvider.of(builder.getCapabilityKey(), builder.getCapability(object), side -> builder.getDirection().test(object, side)));
             }
         });
+        CapabilityServiceForge.INSTANCE.getCapabilitiesFor(object).forEach(builder -> {
+            event.addCapability(builder.getResourceLocation(), CapabilityProvider.of(builder.getCapabilityKey(), builder.getCapability(object), side -> builder.getDirection().test(object, side)));
+        });
     }
 
     @SubscribeEvent
@@ -49,6 +55,9 @@ public class PowerfulJSEvents {
             for (CapabilityBuilder<Entity, ?, ?> builder : builders) {
                 event.addCapability(builder.getResourceLocation(), CapabilityProvider.of(builder.getCapabilityKey(), builder.getCapability(object), side -> builder.getDirection().test(object, side)));
             }
+        });
+        CapabilityServiceForge.INSTANCE.getCapabilitiesFor(object).forEach(builder -> {
+            event.addCapability(builder.getResourceLocation(), CapabilityProvider.of(builder.getCapabilityKey(), builder.getCapability(object), side -> builder.getDirection().test(object, side)));
         });
     }
 

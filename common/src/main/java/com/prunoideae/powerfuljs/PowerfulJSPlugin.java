@@ -5,14 +5,15 @@ import com.prunoideae.powerfuljs.events.EntityCapEventJS;
 import dev.latvian.mods.kubejs.KubeJSPlugin;
 import dev.latvian.mods.kubejs.event.EventGroup;
 import dev.latvian.mods.kubejs.event.EventHandler;
+import dev.latvian.mods.kubejs.script.ScriptType;
 
 public class PowerfulJSPlugin extends KubeJSPlugin {
 
     //Only this event here so no need to make container classes
-    EventGroup GROUP = EventGroup.of("CapabilityEvents");
+    public static final EventGroup GROUP = EventGroup.of("CapabilityEvents");
 
-    EventHandler REGISTER_BE_CAP = GROUP.startup("blockEntity", () -> BlockEntityCapEventJS.class);
-    EventHandler REGISTER_ENTITY_CAP = GROUP.startup("entity", () -> EntityCapEventJS.class);
+    public static final EventHandler REGISTER_BE_CAP = GROUP.startup("blockEntity", () -> BlockEntityCapEventJS.class);
+    public static final EventHandler REGISTER_ENTITY_CAP = GROUP.startup("entity", () -> EntityCapEventJS.class);
 
     @Override
     public void registerEvents() {
