@@ -29,4 +29,16 @@ public class CapabilityServiceForge {
     public Stream<CapabilityBuilderForge<Entity, ?>> getCapabilitiesFor(Entity entity) {
         return entityTester.stream().filter(pair -> pair.getFirst().test(entity)).map(Pair::getSecond);
     }
+
+    public void addItem(Predicate<ItemStack> predicate, CapabilityBuilderForge<ItemStack, ?> builder) {
+        itemTester.add(new Pair<>(predicate, builder));
+    }
+
+    public void addBE(Predicate<BlockEntity> predicate, CapabilityBuilderForge<BlockEntity, ?> builder) {
+        beTester.add(new Pair<>(predicate, builder));
+    }
+
+    public void addEntity(Predicate<Entity> predicate, CapabilityBuilderForge<Entity, ?> builder) {
+        entityTester.add(new Pair<>(predicate, builder));
+    }
 }

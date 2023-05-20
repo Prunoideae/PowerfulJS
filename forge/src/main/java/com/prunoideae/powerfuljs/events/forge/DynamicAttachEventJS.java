@@ -11,16 +11,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 @SuppressWarnings("UnstableApiUsage")
-public class DynamicAttachEventJS<T extends CapabilityProvider<T>> extends EventJS {
-    private final List<Pair<Predicate<T>, CapabilityBuilderForge<T, ?>>> predicates = new ArrayList<>();
+public abstract class DynamicAttachEventJS<T extends CapabilityProvider<T>> extends EventJS {
 
-    public DynamicAttachEventJS<T> add(Predicate<T> predicate, CapabilityBuilderForge<T, ?> provider) {
-        predicates.add(new Pair<>(predicate, provider));
-        return this;
-    }
-
-    @HideFromJS
-    public List<Pair<Predicate<T>, CapabilityBuilderForge<T, ?>>> getPredicates() {
-        return predicates;
-    }
+    public abstract DynamicAttachEventJS<T> add(Predicate<T> predicate, CapabilityBuilderForge<T, ?> provider);
 }

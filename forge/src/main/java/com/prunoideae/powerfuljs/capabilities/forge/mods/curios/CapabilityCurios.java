@@ -2,8 +2,10 @@ package com.prunoideae.powerfuljs.capabilities.forge.mods.curios;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.google.common.collect.MultimapBuilder;
 import com.prunoideae.powerfuljs.capabilities.forge.CapabilityBuilderForge;
 import dev.latvian.mods.kubejs.KubeJSRegistries;
+import dev.latvian.mods.rhino.util.HideFromJS;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -15,10 +17,14 @@ import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.BiPredicate;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CapabilityCurios {
     @FunctionalInterface
@@ -29,6 +35,48 @@ public class CapabilityCurios {
     @FunctionalInterface
     public interface ShouldDrop {
         boolean test(ItemStack instance, SlotContext slotContext, DamageSource source, int lootingLevel, boolean recentlyHit);
+    }
+
+    public static class AttributeModificationContext {
+        private final ItemStack stack;
+        private final SlotContext context;
+        private final UUID uuid;
+
+        private final Multimap<Attribute, AttributeModifier> modifiers;
+
+        public AttributeModificationContext(ItemStack stack, SlotContext context, UUID uuid, Multimap<Attribute, AttributeModifier> modifiers) {
+            this.stack = stack;
+            this.context = context;
+            this.uuid = uuid;
+            this.modifiers = modifiers;
+        }
+
+        public ItemStack getStack() {
+            return stack;
+        }
+
+        public SlotContext getContext() {
+            return context;
+        }
+
+        public UUID getUUID() {
+            return uuid;
+        }
+
+        public AttributeModificationContext modify(Attribute attribute, String identifier, double amount, AttributeModifier.Operation operation) {
+            modifiers.put(attribute, new AttributeModifier(new UUID(identifier.hashCode(), identifier.hashCode()), identifier, amount, operation));
+            return this;
+        }
+
+        public AttributeModificationContext remove(Attribute attribute, String identifier) {
+            modifiers.get(attribute).removeIf(modifier -> modifier.getName().equals(identifier));
+            return this;
+        }
+
+        @HideFromJS
+        public Multimap<Attribute, AttributeModifier> getModifiers() {
+            return modifiers;
+        }
     }
 
     public ItemStackBuilder itemStack() {
@@ -75,10 +123,16 @@ public class CapabilityCurios {
 
         private final Multimap<ResourceLocation, AttributeModifier> modifiers = HashMultimap.create();
         private final Multimap<Attribute, AttributeModifier> attributes = HashMultimap.create();
+        private Consumer<AttributeModificationContext> dynamicAttribute = null;
         private boolean attributeInitialized = false;
 
         public ItemStackBuilder modifyAttribute(ResourceLocation attribute, String identifier, double d, AttributeModifier.Operation operation) {
             modifiers.put(attribute, new AttributeModifier(new UUID(identifier.hashCode(), identifier.hashCode()), identifier, d, operation));
+            return this;
+        }
+
+        public ItemStackBuilder dynamicAttribute(Consumer<AttributeModificationContext> context) {
+            dynamicAttribute = context;
             return this;
         }
 
@@ -139,6 +193,13 @@ public class CapabilityCurios {
                         }
                         attributeInitialized = true;
                     }
+
+                    if (dynamicAttribute != null) {
+                        Multimap<Attribute, AttributeModifier> attributeCopy = HashMultimap.create(attributes);
+                        dynamicAttribute.accept(new AttributeModificationContext(instance, slotContext, uuid, attributeCopy));
+                        return attributeCopy;
+                    }
+
                     return attributes;
                 }
 

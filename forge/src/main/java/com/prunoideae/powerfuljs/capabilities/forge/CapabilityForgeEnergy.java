@@ -34,12 +34,25 @@ public class CapabilityForgeEnergy {
         private final int capacity;
         private final boolean canExtract;
         private final boolean canReceive;
+
+        private int receiveRate = Integer.MAX_VALUE;
+        private int extractRate = Integer.MAX_VALUE;
         private static final String ENERGY_TAG = "pjs:fe_energy";
 
         public ItemStorageBuilder(int capacity, boolean canExtract, boolean canReceive) {
             this.capacity = capacity;
             this.canExtract = canExtract;
             this.canReceive = canReceive;
+        }
+
+        public ItemStorageBuilder receiveRate(int receiveRate) {
+            this.receiveRate = receiveRate;
+            return this;
+        }
+
+        public ItemStorageBuilder extractRate(int extractRate) {
+            this.extractRate = extractRate;
+            return this;
         }
 
         @Override
@@ -49,7 +62,8 @@ public class CapabilityForgeEnergy {
                 public int receiveEnergy(int i, boolean bl) {
                     if (!canReceive)
                         return 0;
-                    int received = Math.min(getMaxEnergyStored() - getEnergyStored(), i);
+                    int received = Math.min(receiveRate, Math.min(getMaxEnergyStored() - getEnergyStored(), i));
+
                     if (!bl) {
                         instance.getOrCreateTag().putInt(ENERGY_TAG, received + getEnergyStored());
                     }
@@ -60,7 +74,7 @@ public class CapabilityForgeEnergy {
                 public int extractEnergy(int i, boolean bl) {
                     if (!canExtract)
                         return 0;
-                    int extracted = Math.min(getEnergyStored(), i);
+                    int extracted = Math.min(extractRate, Math.min(getEnergyStored(), i));
                     if (!bl) {
                         instance.getOrCreateTag().putInt(ENERGY_TAG, getEnergyStored() - extracted);
                     }
@@ -194,7 +208,7 @@ public class CapabilityForgeEnergy {
     }
 
     // No default implementation for BE caps since we're not likely to do data sync here
-    public BlockEntityBuilder customBlockEntity(){
+    public BlockEntityBuilder customBlockEntity() {
         return new BlockEntityBuilder();
     }
 

@@ -30,6 +30,7 @@ public class PowerfulJSEvents {
                 event.addCapability(builder.getResourceLocation(), CapabilityProvider.of(builder.getCapabilityKey(), builder.getCapability(object), side -> builder.getDirection().test(object, side)));
             }
         });
+
         CapabilityServiceForge.INSTANCE.getCapabilitiesFor(object).forEach(builder -> {
             event.addCapability(builder.getResourceLocation(), CapabilityProvider.of(builder.getCapabilityKey(), builder.getCapability(object), side -> builder.getDirection().test(object, side)));
         });
