@@ -16,14 +16,11 @@ import com.prunoideae.powerfuljs.custom.BlockDummyEntityJS;
 import com.prunoideae.powerfuljs.events.forge.DynamicBEEventJS;
 import com.prunoideae.powerfuljs.events.forge.DynamicEntityEventJS;
 import com.prunoideae.powerfuljs.events.forge.DynamicItemStackEventJS;
-import com.prunoideae.powerfuljs.extras.create.AttachCreateBehaviorEventJS;
-import com.prunoideae.powerfuljs.extras.create.CreateBehaviours;
-import com.simibubi.create.foundation.tileEntity.behaviour.belt.TransportedItemStackHandlerBehaviour;
 import dev.architectury.hooks.fluid.forge.FluidStackHooksForge;
 import dev.architectury.platform.Platform;
-import dev.latvian.mods.kubejs.RegistryObjectBuilderTypes;
 import dev.latvian.mods.kubejs.event.EventHandler;
 import dev.latvian.mods.kubejs.fluid.FluidStackJS;
+import dev.latvian.mods.kubejs.registry.RegistryInfo;
 import dev.latvian.mods.kubejs.script.BindingsEvent;
 import dev.latvian.mods.kubejs.script.ScriptType;
 import dev.latvian.mods.rhino.util.wrap.TypeWrappers;
@@ -36,7 +33,6 @@ import top.theillusivec4.curios.api.client.ICurioRenderer;
 import vazkii.botania.api.BotaniaForgeCapabilities;
 
 public class PowerfulJSPluginForge extends PowerfulJSPlugin {
-    public static EventHandler ATTACH_CREATE_BEHAVIOR;
 
     public static final EventHandler DYNAMIC_ATTACH_ITEMSTACK_CAP = GROUP.startup("dynamicItem", () -> DynamicItemStackEventJS.class);
     public static final EventHandler DYNAMIC_ATTACH_ENTITY_CAP = GROUP.startup("dynamicEntity", () -> DynamicEntityEventJS.class);
@@ -44,7 +40,7 @@ public class PowerfulJSPluginForge extends PowerfulJSPlugin {
 
     @Override
     public void init() {
-        RegistryObjectBuilderTypes.BLOCK.addType("powerfuljs:dummy_block_entity", BlockDummyEntityJS.Builder.class, BlockDummyEntityJS.Builder::new);
+        RegistryInfo.BLOCK.addType("powerfuljs:dummy_block_entity", BlockDummyEntityJS.Builder.class, BlockDummyEntityJS.Builder::new);
     }
 
     @Override
@@ -75,18 +71,11 @@ public class PowerfulJSPluginForge extends PowerfulJSPlugin {
             event.add("IECapabilityBuilder", CapabilitiesIE.class);
             event.add("IECapabilities", CapabilitiesHelperIE.class);
         }
-        if (Platform.isModLoaded("create")) {
-            event.add("CreateBehaviours", CreateBehaviours.class);
-            event.add("TransportedResult", TransportedItemStackHandlerBehaviour.TransportedResult.class);
-        }
     }
 
     @Override
     public void registerTypeWrappers(ScriptType type, TypeWrappers typeWrappers) {
         typeWrappers.registerSimple(FluidStack.class, o -> FluidStackHooksForge.toForge(FluidStackJS.of(o).getFluidStack()));
-        if (Platform.isModLoaded("mekanism")) {
-
-        }
     }
 
     @Override
@@ -95,25 +84,17 @@ public class PowerfulJSPluginForge extends PowerfulJSPlugin {
         if (Platform.isModLoaded("curios")) {
             EventCurios.GROUP.register();
         }
-        if (Platform.isModLoaded("create")) {
-            PowerfulJSPluginForge.ATTACH_CREATE_BEHAVIOR = PowerfulJSPlugin.GROUP.startup("createBlockBehaviour", () -> AttachCreateBehaviorEventJS.class);
-        }
     }
 
     @Override
     public void afterInit() {
         super.afterInit();
-        DYNAMIC_ATTACH_ITEMSTACK_CAP.post(new DynamicItemStackEventJS());
-        DYNAMIC_ATTACH_BLOCK_ENTITY_CAP.post(new DynamicBEEventJS());
-        DYNAMIC_ATTACH_ENTITY_CAP.post(new DynamicEntityEventJS());
+        DYNAMIC_ATTACH_ITEMSTACK_CAP.post(ScriptType.STARTUP, new DynamicItemStackEventJS());
+        DYNAMIC_ATTACH_BLOCK_ENTITY_CAP.post(ScriptType.STARTUP, new DynamicBEEventJS());
+        DYNAMIC_ATTACH_ENTITY_CAP.post(ScriptType.STARTUP, new DynamicEntityEventJS());
 
         if (Platform.isModLoaded("curios")) {
-            PowerfulJS.PROXY.runOnClient(() -> EventCurios.REGISTER_RENDERER.post(new RegisterCuriosRendererEventJS()));
-        }
-        if (Platform.isModLoaded("create")) {
-            PowerfulJSPluginForge.ATTACH_CREATE_BEHAVIOR.post(new AttachCreateBehaviorEventJS());
+            PowerfulJS.PROXY.runOnClient(() -> EventCurios.REGISTER_RENDERER.post(ScriptType.STARTUP, new RegisterCuriosRendererEventJS()));
         }
     }
-
-
 }

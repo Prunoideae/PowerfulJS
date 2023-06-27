@@ -2,9 +2,8 @@ package com.prunoideae.powerfuljs.capabilities.forge.mods.curios;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.google.common.collect.MultimapBuilder;
 import com.prunoideae.powerfuljs.capabilities.forge.CapabilityBuilderForge;
-import dev.latvian.mods.kubejs.KubeJSRegistries;
+import dev.latvian.mods.kubejs.registry.KubeJSRegistries;
 import dev.latvian.mods.rhino.util.HideFromJS;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
@@ -17,14 +16,11 @@ import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class CapabilityCurios {
     @FunctionalInterface

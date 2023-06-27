@@ -23,7 +23,7 @@ public class PowerfulJSPlugin extends KubeJSPlugin {
     @Override
     public void afterInit() {
         CapabilityService.INSTANCE.loadBuilders();
-        REGISTER_BE_CAP.post(new BlockEntityCapEventJS());
-        REGISTER_ENTITY_CAP.post(new EntityCapEventJS());
+        REGISTER_BE_CAP.post(ScriptType.STARTUP, new BlockEntityCapEventJS());
+        REGISTER_ENTITY_CAP.post(ScriptType.STARTUP, new EntityCapEventJS());
     }
 }
