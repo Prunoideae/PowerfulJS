@@ -74,11 +74,6 @@ public class PowerfulJSPluginForge extends PowerfulJSPlugin {
     }
 
     @Override
-    public void registerTypeWrappers(ScriptType type, TypeWrappers typeWrappers) {
-        typeWrappers.registerSimple(FluidStack.class, o -> FluidStackHooksForge.toForge(FluidStackJS.of(o).getFluidStack()));
-    }
-
-    @Override
     public void registerEvents() {
         super.registerEvents();
         if (Platform.isModLoaded("curios")) {

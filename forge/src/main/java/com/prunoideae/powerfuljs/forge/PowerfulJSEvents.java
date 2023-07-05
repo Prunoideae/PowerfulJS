@@ -2,13 +2,9 @@ package com.prunoideae.powerfuljs.forge;
 
 import com.prunoideae.powerfuljs.CapabilityBuilder;
 import com.prunoideae.powerfuljs.CapabilityService;
-import com.prunoideae.powerfuljs.capabilities.forge.CapabilityBuilderForge;
 import com.prunoideae.powerfuljs.capabilities.forge.CapabilityProvider;
 import com.prunoideae.powerfuljs.custom.BlockDummyEntityJS;
 import com.prunoideae.powerfuljs.custom.BlockEntityDummy;
-import dev.latvian.mods.kubejs.KubeJS;
-import dev.latvian.mods.kubejs.block.BlockBuilder;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
