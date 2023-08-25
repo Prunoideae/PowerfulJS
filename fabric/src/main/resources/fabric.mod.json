@@ -25,6 +25,7 @@
   ],
   "depends": {
     "fabricloader": ">=0.14.12",
-    "minecraft": ">=1.19.2"
+    "minecraft": ">=1.19.2",
+    "kubejs": ">=1902.6.1-build.277"
   }
 }

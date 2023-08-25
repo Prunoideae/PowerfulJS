@@ -65,6 +65,12 @@ versionRange = "[1.19.2,1.20)"
 ordering = "NONE"
 side = "BOTH"
 [[dependencies.powerfuljs]]
+modId = "kubejs"
+mandatory = true
+versionRange = "[1902.6.1-build.277,)"
+ordering = "NONE"
+side = "BOTH"
+[[dependencies.powerfuljs]]
 modId = "create"
 mandatory = false
 versionRange = "*"

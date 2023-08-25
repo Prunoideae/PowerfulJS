@@ -10,6 +10,6 @@ import java.util.function.Consumer;
 
 public class RegisterCuriosRendererEventJS extends EventJS {
     public void register(Item item, Consumer<RendererCurios.RenderContext> renderer) {
-        PowerfulJS.PROXY.runOnClient(() -> CuriosRendererRegistry.register(item, () -> new RendererCurios(renderer)));
+        PowerfulJS.PROXY.get().runOnClient(() -> CuriosRendererRegistry.register(item, () -> new RendererCurios(renderer)));
     }
 }

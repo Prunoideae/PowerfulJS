@@ -16,18 +16,14 @@ import com.prunoideae.powerfuljs.custom.BlockDummyEntityJS;
 import com.prunoideae.powerfuljs.events.forge.DynamicBEEventJS;
 import com.prunoideae.powerfuljs.events.forge.DynamicEntityEventJS;
 import com.prunoideae.powerfuljs.events.forge.DynamicItemStackEventJS;
-import dev.architectury.hooks.fluid.forge.FluidStackHooksForge;
 import dev.architectury.platform.Platform;
 import dev.latvian.mods.kubejs.event.EventHandler;
-import dev.latvian.mods.kubejs.fluid.FluidStackJS;
 import dev.latvian.mods.kubejs.registry.RegistryInfo;
 import dev.latvian.mods.kubejs.script.BindingsEvent;
 import dev.latvian.mods.kubejs.script.ScriptType;
-import dev.latvian.mods.rhino.util.wrap.TypeWrappers;
 import me.desht.pneumaticcraft.api.PNCCapabilities;
 import mekanism.common.capabilities.Capabilities;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.fluids.FluidStack;
 import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
 import vazkii.botania.api.BotaniaForgeCapabilities;
@@ -65,7 +61,7 @@ public class PowerfulJSPluginForge extends PowerfulJSPlugin {
         if (Platform.isModLoaded("curios")) {
             event.add("CuriosCapabilities", CuriosCapability.class);
             event.add("CuriosCapabilityBuilder", CapabilitiesCurios.class);
-            PowerfulJS.PROXY.runOnClient(() -> event.add("CuriosRenderer", ICurioRenderer.class));
+            PowerfulJS.PROXY.get().runOnClient(() -> event.add("CuriosRenderer", ICurioRenderer.class));
         }
         if (Platform.isModLoaded("immersiveengineering")) {
             event.add("IECapabilityBuilder", CapabilitiesIE.class);
@@ -89,7 +85,7 @@ public class PowerfulJSPluginForge extends PowerfulJSPlugin {
         DYNAMIC_ATTACH_ENTITY_CAP.post(ScriptType.STARTUP, new DynamicEntityEventJS());
 
         if (Platform.isModLoaded("curios")) {
-            PowerfulJS.PROXY.runOnClient(() -> EventCurios.REGISTER_RENDERER.post(ScriptType.STARTUP, new RegisterCuriosRendererEventJS()));
+            PowerfulJS.PROXY.get().runOnClient(() -> EventCurios.REGISTER_RENDERER.post(ScriptType.STARTUP, new RegisterCuriosRendererEventJS()));
         }
     }
 }
