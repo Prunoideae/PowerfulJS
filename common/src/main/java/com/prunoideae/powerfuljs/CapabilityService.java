@@ -1,5 +1,7 @@
 package com.prunoideae.powerfuljs;
 
+import com.mojang.datafixers.util.Pair;
+import dev.latvian.mods.kubejs.block.entity.BlockEntityInfo;
 import dev.latvian.mods.kubejs.item.ItemBuilder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -16,6 +18,20 @@ public class CapabilityService {
     protected final Map<Item, List<CapabilityBuilder<ItemStack, ?, ?>>> items = new HashMap<>();
     protected final Map<BlockEntityType<?>, List<CapabilityBuilder<BlockEntity, ?, ?>>> blockEntities = new HashMap<>();
     protected final Map<EntityType<?>, List<CapabilityBuilder<Entity, ?, ?>>> entities = new HashMap<>();
+    protected final List<Pair<BlockEntityInfo, CapabilityBuilder<BlockEntity, ?, ?>>> blockEntityInfo = new ArrayList<>();
+
+    public void addLazyBECapability(BlockEntityInfo info, CapabilityBuilder<BlockEntity, ?, ?> capabilityBuilder) {
+        blockEntityInfo.add(Pair.of(info, capabilityBuilder));
+    }
+
+    public void resolveLazyBECapabilities() {
+        if (!blockEntityInfo.isEmpty()) {
+            for (Pair<BlockEntityInfo, CapabilityBuilder<BlockEntity, ?, ?>> pair : blockEntityInfo) {
+                addBECapability(pair.getFirst().entityType, pair.getSecond());
+            }
+            blockEntityInfo.clear();
+        }
+    }
 
     public void addBuilderCapability(ItemBuilder builder, CapabilityBuilder<ItemStack, ?, ?> capabilityBuilder) {
         itemBuilders.computeIfAbsent(builder, b -> new ArrayList<>()).add(capabilityBuilder);
@@ -46,6 +62,7 @@ public class CapabilityService {
     }
 
     public Optional<List<CapabilityBuilder<BlockEntity, ?, ?>>> getCapabilitiesFor(BlockEntity blockEntity) {
+        CapabilityService.INSTANCE.resolveLazyBECapabilities();
         return Optional.ofNullable(blockEntities.get(blockEntity.getType()));
     }
 

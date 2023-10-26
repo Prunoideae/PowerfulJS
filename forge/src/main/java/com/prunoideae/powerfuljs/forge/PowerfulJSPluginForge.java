@@ -12,13 +12,11 @@ import com.prunoideae.powerfuljs.capabilities.forge.mods.immersive.CapabilitiesI
 import com.prunoideae.powerfuljs.capabilities.forge.mods.mekanism.CapabilitiesMekanism;
 import com.prunoideae.powerfuljs.capabilities.forge.mods.mekanism.MekanismHelper;
 import com.prunoideae.powerfuljs.capabilities.forge.mods.pnc.CapabilitiesPneumatic;
-import com.prunoideae.powerfuljs.custom.BlockDummyEntityJS;
 import com.prunoideae.powerfuljs.events.forge.DynamicBEEventJS;
 import com.prunoideae.powerfuljs.events.forge.DynamicEntityEventJS;
 import com.prunoideae.powerfuljs.events.forge.DynamicItemStackEventJS;
 import dev.architectury.platform.Platform;
 import dev.latvian.mods.kubejs.event.EventHandler;
-import dev.latvian.mods.kubejs.registry.RegistryInfo;
 import dev.latvian.mods.kubejs.script.BindingsEvent;
 import dev.latvian.mods.kubejs.script.ScriptType;
 import me.desht.pneumaticcraft.api.PNCCapabilities;
@@ -36,7 +34,6 @@ public class PowerfulJSPluginForge extends PowerfulJSPlugin {
 
     @Override
     public void init() {
-        RegistryInfo.BLOCK.addType("powerfuljs:dummy_block_entity", BlockDummyEntityJS.Builder.class, BlockDummyEntityJS.Builder::new);
     }
 
     @Override

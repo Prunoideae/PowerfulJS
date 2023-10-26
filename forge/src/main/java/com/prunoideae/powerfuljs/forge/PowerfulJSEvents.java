@@ -3,17 +3,12 @@ package com.prunoideae.powerfuljs.forge;
 import com.prunoideae.powerfuljs.CapabilityBuilder;
 import com.prunoideae.powerfuljs.CapabilityService;
 import com.prunoideae.powerfuljs.capabilities.forge.CapabilityProvider;
-import com.prunoideae.powerfuljs.custom.BlockDummyEntityJS;
-import com.prunoideae.powerfuljs.custom.BlockEntityDummy;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegisterEvent;
 
 @Mod.EventBusSubscriber
 public class PowerfulJSEvents {
@@ -58,16 +53,4 @@ public class PowerfulJSEvents {
         });
     }
 
-    public static void registerDummyBEs(RegisterEvent event) {
-        event.register(ForgeRegistries.Keys.BLOCK_ENTITY_TYPES, helper -> {
-            for (BlockDummyEntityJS.Builder block : BlockEntityDummy.BLOCKS) {
-                var blockEntityType = BlockEntityType.Builder.of(BlockEntityDummy::new, block.get()).build(null);
-                BlockEntityDummy.BLOCK_ENTITY_TYPES.put(block.id, blockEntityType);
-                helper.register(block.id, blockEntityType);
-                for (CapabilityBuilder<BlockEntity, ?, ?> capabilityBuilder : block.capabilityBuilders) {
-                    CapabilityService.INSTANCE.addBECapability(blockEntityType, capabilityBuilder);
-                }
-            }
-        });
-    }
 }

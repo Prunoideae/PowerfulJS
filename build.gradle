@@ -62,10 +62,6 @@ allprojects {
 			url = "https://maven.terraformersmc.com/" // for trinkets
 		}
 		maven {
-			name = "Ladysnake Libs"
-			url = 'https://ladysnake.jfrog.io/artifactory/mods'
-		}
-		maven {
 			name = "BuildCraft" // for LBA
 			url = "https://mod-buildcraft.com/maven"
 		}
@@ -92,6 +88,10 @@ allprojects {
 			content {
 				includeGroup "maven.modrinth"
 			}
+		}
+		maven {
+			name = "Ladysnake Libs"
+			url = 'https://maven.ladysnake.org/releases'
 		}
 		maven {
 			// location of the maven that hosts JEI files
