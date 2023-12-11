@@ -3,7 +3,7 @@ package com.prunoideae.powerfuljs.capabilities.forge.mods.curios;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.prunoideae.powerfuljs.capabilities.forge.CapabilityBuilderForge;
-import dev.latvian.mods.kubejs.registry.KubeJSRegistries;
+import dev.latvian.mods.kubejs.registry.RegistryInfo;
 import dev.latvian.mods.rhino.util.HideFromJS;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
@@ -185,7 +185,7 @@ public class CapabilityCurios {
                         for (Map.Entry<ResourceLocation, AttributeModifier> entry : modifiers.entries()) {
                             ResourceLocation key = entry.getKey();
                             AttributeModifier modifier = entry.getValue();
-                            attributes.put(KubeJSRegistries.attributes().get(key), modifier);
+                            attributes.put(RegistryInfo.ATTRIBUTE.getValue(key), modifier);
                         }
                         attributeInitialized = true;
                     }
