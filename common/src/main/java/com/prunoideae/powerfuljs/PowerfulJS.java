@@ -12,6 +12,7 @@ import java.util.function.Supplier;
 
 public class PowerfulJS {
     public static final String MOD_ID = "powerfuljs";
+    public static final Logger LOGGER = LogManager.getLogger("powerfuljs");
     public static Supplier<PowerfulJSCommon> PROXY = Suppliers.memoize(() -> EnvExecutor.getEnvSpecific(() -> PowerfulJSClient::new, () -> PowerfulJSCommon::new));
 
     public static void init() {

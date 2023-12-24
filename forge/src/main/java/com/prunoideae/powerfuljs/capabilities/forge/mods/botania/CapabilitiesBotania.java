@@ -1,5 +1,7 @@
 package com.prunoideae.powerfuljs.capabilities.forge.mods.botania;
 
+import com.prunoideae.powerfuljs.capabilities.forge.mods.botania.mana.CapabilityMana;
+
 public interface CapabilitiesBotania {
     CapabilityMana MANA = new CapabilityMana();
     CapabilityAvatar AVATAR = new CapabilityAvatar();

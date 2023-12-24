@@ -27,15 +27,16 @@ dependencies {
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
     modImplementation "dev.latvian.mods:kubejs-forge:${rootProject.kubejs_version}"
     modImplementation "dev.latvian.mods:rhino-forge:${rootProject.rhino_version}"
-    modImplementation "vazkii.botania:Botania:${rootProject.minecraft_version}-${rootProject.botania_version}-FORGE"
-    modImplementation "maven.modrinth:pneumaticcraft-repressurized:${pnc_version}+mc${minecraft_version}"
-    compileOnly "top.theillusivec4.curios:curios-forge:${rootProject.curios_version}+${rootProject.minecraft_version}:api"
-    modImplementation "blusunrize.immersiveengineering:ImmersiveEngineering:${rootProject.minecraft_version}-${rootProject.immersive_engineering_version}"
 
-    modImplementation "mekanism:Mekanism:${rootProject.minecraft_version}-${rootProject.mekanism_version}"
-    runtimeOnly "mekanism:Mekanism:${rootProject.minecraft_version}-${rootProject.mekanism_version}:additions"
-    runtimeOnly "mekanism:Mekanism:${rootProject.minecraft_version}-${rootProject.mekanism_version}:generators"
-    runtimeOnly "mekanism:Mekanism:${rootProject.minecraft_version}-${rootProject.mekanism_version}:tools"
+    compileOnly "vazkii.botania:Botania:${rootProject.minecraft_version}-${rootProject.botania_version}-FORGE"
+    compileOnly "maven.modrinth:pneumaticcraft-repressurized:${pnc_version}+mc${minecraft_version}"
+    compileOnly "top.theillusivec4.curios:curios-forge:${rootProject.curios_version}+${rootProject.minecraft_version}"
+    compileOnly "blusunrize.immersiveengineering:ImmersiveEngineering:${rootProject.minecraft_version}-${rootProject.immersive_engineering_version}"
+
+    compileOnly "mekanism:Mekanism:${rootProject.minecraft_version}-${rootProject.mekanism_version}"
+    compileOnly "mekanism:Mekanism:${rootProject.minecraft_version}-${rootProject.mekanism_version}:additions"
+    compileOnly "mekanism:Mekanism:${rootProject.minecraft_version}-${rootProject.mekanism_version}:generators"
+    compileOnly "mekanism:Mekanism:${rootProject.minecraft_version}-${rootProject.mekanism_version}:tools"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
