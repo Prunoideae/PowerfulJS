@@ -36,7 +36,7 @@ public class CapabilityExternalHeatable {
         }
 
         @Override
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("ie_exheater_be_custom");
         }
     }

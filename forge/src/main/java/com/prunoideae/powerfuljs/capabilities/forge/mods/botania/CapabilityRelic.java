@@ -59,7 +59,7 @@ public class CapabilityRelic {
         }
 
         @Override
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerful:relic_botania");
         }
     }
@@ -138,7 +138,7 @@ public class CapabilityRelic {
 
         @Override
         @HideFromJS
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerful:relic_custom_botania");
         }
     }

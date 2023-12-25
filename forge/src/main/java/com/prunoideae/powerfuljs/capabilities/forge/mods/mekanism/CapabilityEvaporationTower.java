@@ -34,8 +34,8 @@ public class CapabilityEvaporationTower {
         }
 
         @Override
-        public ResourceLocation getResourceLocation() {
-            return new ResourceLocation("powerful:mek_solar_be");
+        protected ResourceLocation getDefaultKey() {
+            return new ResourceLocation("powerfuljs:mek_solar_be");
         }
     }
 }

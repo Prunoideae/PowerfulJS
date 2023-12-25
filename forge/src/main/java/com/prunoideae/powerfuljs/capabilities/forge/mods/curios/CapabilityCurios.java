@@ -220,7 +220,7 @@ public class CapabilityCurios {
         }
 
         @Override
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return CuriosCapability.ID_ITEM;
         }
     }

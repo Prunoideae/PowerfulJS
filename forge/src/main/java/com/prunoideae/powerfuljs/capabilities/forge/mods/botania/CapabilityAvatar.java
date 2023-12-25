@@ -60,7 +60,7 @@ public class CapabilityAvatar {
 
         @Override
         @HideFromJS
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerful:botania_avatar_wieldable");
         }
     }

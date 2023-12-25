@@ -45,7 +45,7 @@ public class CapabilityAlloyInteractable {
         }
 
         @Override
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerful:alloy_be_custom");
         }
     }

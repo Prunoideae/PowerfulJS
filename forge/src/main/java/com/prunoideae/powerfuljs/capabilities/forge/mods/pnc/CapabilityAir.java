@@ -84,7 +84,7 @@ public class CapabilityAir {
         }
 
         @Override
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerful:air_pnc");
         }
     }
@@ -188,7 +188,7 @@ public class CapabilityAir {
         }
 
         @Override
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerful:air_pnc_item_custom");
         }
     }

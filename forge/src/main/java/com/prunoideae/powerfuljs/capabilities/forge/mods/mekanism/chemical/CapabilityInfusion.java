@@ -71,7 +71,7 @@ public class CapabilityInfusion {
 
     public static class ItemStackBuilder extends InfusionBuilder<ItemStack> {
         @Override
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerful:infusion_item_custom");
         }
     }
@@ -79,7 +79,7 @@ public class CapabilityInfusion {
     public static class BlockEntityBuilder extends InfusionBuilder<BlockEntity> {
 
         @Override
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerful:infusion_be_custom");
         }
     }

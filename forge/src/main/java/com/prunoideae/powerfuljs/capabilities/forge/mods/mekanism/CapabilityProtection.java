@@ -55,7 +55,7 @@ public class CapabilityProtection {
         }
 
         @Override
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerful:laser_protection_item");
         }
     }
@@ -80,7 +80,7 @@ public class CapabilityProtection {
         }
 
         @Override
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerful:radiation_protection_item");
         }
     }

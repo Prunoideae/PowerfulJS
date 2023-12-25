@@ -71,14 +71,14 @@ public class CapabilityPigment {
 
     public static class ItemStackBuilder extends PigmentBuilder<ItemStack> {
         @Override
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerful:pigment_item_custom");
         }
     }
 
     public static class BlockEntityBuilder extends PigmentBuilder<BlockEntity> {
         @Override
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerful:pigment_be_custom");
         }
     }

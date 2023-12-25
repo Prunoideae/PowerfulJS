@@ -35,7 +35,7 @@ public class CapabilityRotationAcceptor {
         }
 
         @Override
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerful:ie_rotation_be_custom");
         }
     }

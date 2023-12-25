@@ -25,11 +25,11 @@ import java.util.function.Supplier;
 @SuppressWarnings("UnstableApiUsage")
 public class FluidHandlerJS<T extends CapabilityProvider<T>> implements IFluidHandler, INBTSerializable<CompoundTag> {
 
-    private static FluidStackJS fromForge(FluidStack fluidStack) {
+    static FluidStackJS fromForge(FluidStack fluidStack) {
         return FluidStackJS.of(FluidStackHooksForge.fromForge(fluidStack));
     }
 
-    private static FluidStack toForge(FluidStackJS fluidStackJS) {
+    static FluidStack toForge(FluidStackJS fluidStackJS) {
         return FluidStackHooksForge.toForge(fluidStackJS.getFluidStack());
     }
 
@@ -52,7 +52,6 @@ public class FluidHandlerJS<T extends CapabilityProvider<T>> implements IFluidHa
     public interface FluidTransfer<T extends CapabilityProvider<T>> {
         int transfer(T instance, FluidHandlerJS<T> storage, FluidStackJS fluidStack, boolean simulate);
     }
-
 
     protected final T instance;
     protected final int capacity;
@@ -96,22 +95,20 @@ public class FluidHandlerJS<T extends CapabilityProvider<T>> implements IFluidHa
     @Override
     public int fill(FluidStack fluidStack, FluidAction fluidAction) {
         if (fill != null) return fill.transfer(instance, this, fromForge(fluidStack), fluidAction.simulate());
-        return pjs$fillRaw(fromForge(fluidStack), fluidAction.simulate());
+        return pjs$fillRaw(fluidStack, fluidAction.simulate());
     }
 
     @Info("Util method to fill fluid into the storage. Note that this manipulates the internal `fluidStack` in the tank.")
-    public int pjs$fillRaw(FluidStackJS fluidStackJS, boolean simulate) {
-        // LMAO I still need to cast back
-        FluidStack stack = toForge(fluidStackJS);
-
+    public int pjs$fillRaw(FluidStack stack, boolean simulate) {
         if (stack.isEmpty() || !isFluidValid(0, stack)) return 0;
         if (simulate) {
-            if (fluidStack.isEmpty()) return Math.min(getTankCapacity(0), stack.getAmount());
+            if (fluidStack.isEmpty() || fluidStack.getAmount() == 0)
+                return Math.min(getTankCapacity(0), stack.getAmount());
             if (!fluidStack.isFluidEqual(stack)) return 0;
             return Math.min(getTankCapacity(0) - fluidStack.getAmount(), stack.getAmount());
         }
 
-        if (fluidStack.isEmpty()) {
+        if (fluidStack.isEmpty() || fluidStack.getAmount() == 0) {
             fluidStack = new FluidStack(stack, Math.min(getTankCapacity(0), stack.getAmount()));
             return fluidStack.getAmount();
         }
@@ -135,12 +132,11 @@ public class FluidHandlerJS<T extends CapabilityProvider<T>> implements IFluidHa
             int amount = drain.transfer(instance, this, fromForge(fluidStack), fluidAction.simulate());
             return new FluidStack(fluidStack, amount);
         }
-        return new FluidStack(fluidStack, pjs$drainRaw(fromForge(fluidStack), fluidAction.simulate()));
+        return new FluidStack(fluidStack, pjs$drainRaw(fluidStack, fluidAction.simulate()));
     }
 
     @Info("Util method to drain fluid from the storage. Note that this manipulates the internal `fluidStack` in the tank.")
-    public int pjs$drainRaw(FluidStackJS fluidStackJS, boolean simulate) {
-        FluidStack stack = toForge(fluidStackJS);
+    public int pjs$drainRaw(FluidStack stack, boolean simulate) {
         int drained = stack.getAmount();
         if (fluidStack.isEmpty() || fluidStack.getAmount() == 0) return 0;
         if (fluidStack.getAmount() < drained) drained = fluidStack.getAmount();
@@ -233,13 +229,20 @@ public class FluidHandlerJS<T extends CapabilityProvider<T>> implements IFluidHa
         }
 
         @Override
-        public ResourceLocation getResourceLocation() {
+        protected ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerfuljs:fluid");
         }
 
         public Builder<T> acceptFluid(FluidStackJS fluidStackJS) {
-            Supplier<FluidStack> forgeStack = Suppliers.memoize(() -> toForge(fluidStackJS));
-            isFluidValid((instance1, storage, stack) -> forgeStack.get().getFluid().equals(fluidStackJS.getFluid()));
+            return acceptFluid(fluidStackJS, false);
+        }
+
+        public Builder<T> acceptFluid(FluidStackJS fluidStackJS, boolean matchNbt) {
+            isFluidValid((instance1, storage, stack) ->
+                    matchNbt ?
+                            fluidStackJS.matches(stack) :
+                            fluidStackJS.getFluid().equals(stack.getFluid())
+            );
             return this;
         }
 

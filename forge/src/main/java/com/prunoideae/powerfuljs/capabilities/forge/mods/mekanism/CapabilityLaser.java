@@ -54,7 +54,7 @@ public class CapabilityLaser {
         }
 
         @Override
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerful:mek_laser_be");
         }
     }

@@ -128,7 +128,7 @@ public class ManaHandlerJS implements ManaReceiver, INBTSerializable<IntTag> {
         }
 
         @Override
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerfuljs:mana");
         }
     }

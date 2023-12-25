@@ -190,7 +190,7 @@ public class ManaItemJS implements ManaItem, INBTSerializable<IntTag> {
         }
 
         @Override
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerfuljs:mana");
         }
 

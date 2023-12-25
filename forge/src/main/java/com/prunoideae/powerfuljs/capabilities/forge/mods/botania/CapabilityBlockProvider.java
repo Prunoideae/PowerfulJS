@@ -64,7 +64,7 @@ public class CapabilityBlockProvider {
 
         @Override
         @HideFromJS
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerful:block_provider_botania");
         }
     }

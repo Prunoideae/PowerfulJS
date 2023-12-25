@@ -187,7 +187,7 @@ public class EnergyStorageJS<T extends CapabilityProvider<T>> implements IEnergy
         }
 
         @Override
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerfuljs:forge_energy");
         }
     }

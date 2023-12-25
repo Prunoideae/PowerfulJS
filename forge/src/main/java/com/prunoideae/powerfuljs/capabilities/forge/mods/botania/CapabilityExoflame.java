@@ -77,7 +77,7 @@ public class CapabilityExoflame {
         }
 
         @Override
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerful:exoflame_be");
         }
     }

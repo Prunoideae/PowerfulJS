@@ -91,7 +91,7 @@ public class FluidHandlerItemJS extends FluidHandlerJS<ItemStack> implements IFl
         }
 
         @Override
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerfuljs:fluid");
         }
 

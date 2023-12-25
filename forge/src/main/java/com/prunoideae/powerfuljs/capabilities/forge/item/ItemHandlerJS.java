@@ -257,7 +257,7 @@ public class ItemHandlerJS<T extends CapabilityProvider<T>> implements IItemHand
         }
 
         @Override
-        public ResourceLocation getResourceLocation() {
+        protected ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerfuljs:item");
         }
 

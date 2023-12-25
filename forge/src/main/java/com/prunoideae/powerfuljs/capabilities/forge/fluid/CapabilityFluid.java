@@ -21,6 +21,14 @@ public class CapabilityFluid {
         return new BlockEntityBuilder(capacity);
     }
 
+    public MultiTankBlockEntityBuilder multiTankBlockEntity() {
+        return multiTankBlockEntity(1000);
+    }
+
+    public MultiTankBlockEntityBuilder multiTankBlockEntity(int... capacities) {
+        return new MultiTankBlockEntityBuilder(capacities);
+    }
+
     public static class BlockEntityBuilder extends FluidHandlerJS.Builder<BlockEntity> {
 
         public BlockEntityBuilder(int capacity) {
@@ -28,4 +36,9 @@ public class CapabilityFluid {
         }
     }
 
+    public static class MultiTankBlockEntityBuilder extends MultiHandlerJS.Builder<BlockEntity> {
+        public MultiTankBlockEntityBuilder(int... capacities) {
+            super(capacities);
+        }
+    }
 }

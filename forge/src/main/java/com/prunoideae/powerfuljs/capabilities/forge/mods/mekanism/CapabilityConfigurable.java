@@ -51,7 +51,7 @@ public class CapabilityConfigurable {
         }
 
         @Override
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerful:mek_configurable_be");
         }
     }

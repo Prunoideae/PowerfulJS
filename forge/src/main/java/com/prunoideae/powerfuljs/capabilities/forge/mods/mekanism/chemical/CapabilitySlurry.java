@@ -73,7 +73,7 @@ public class CapabilitySlurry {
     public static class ItemStackBuilder extends SlurryBuilder<ItemStack> {
 
         @Override
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerful:slurry_item_custom");
         }
     }
@@ -81,7 +81,7 @@ public class CapabilitySlurry {
     public static class BlockEntityBuilder extends SlurryBuilder<BlockEntity> {
 
         @Override
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerful:slurry_be_custom");
         }
     }

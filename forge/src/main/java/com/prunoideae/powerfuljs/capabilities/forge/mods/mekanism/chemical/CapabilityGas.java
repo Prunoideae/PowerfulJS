@@ -75,7 +75,7 @@ public class CapabilityGas {
     public static class ItemStackBuilder extends GasBuilder<ItemStack> {
         @Override
         @HideFromJS
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerful:gas_item_custom");
         }
     }
@@ -83,7 +83,7 @@ public class CapabilityGas {
     public static class BlockEntityBuilder extends GasBuilder<BlockEntity> {
         @Override
         @HideFromJS
-        public ResourceLocation getResourceLocation() {
+        public ResourceLocation getDefaultKey() {
             return new ResourceLocation("powerful:gas_be_custom");
         }
     }
